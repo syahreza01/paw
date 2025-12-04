@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Untuk Kamu 💗</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: pink;
+            background-image: url('https://png.pngtree.com/png-vector/20220609/ourmid/pngtree-cute-floral-border-png-image_4846880.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        #container {
+            margin-top: 150px;
+        }
+
+        h1 {
+            font-size: 42px;
+            color: #d6006f;
+            text-shadow: 2px 2px 4px white;
+        }
+
+        button {
+            font-size: 22px;
+            padding: 12px 28px;
+            margin: 15px;
+            border-radius: 15px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #yesBtn {
+            background-color: #ff4da6;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #999;
+            color: white;
+            position: relative;
+        }
+
+        #result {
+            display: none;
+            margin-top: 120px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        #result img {
+            width: 220px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 0 15px white;
+        }
+
+        #result h2 {
+            color: #c40067;
+            font-size: 34px;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Efek bunga & love jatuh */
+        .falling {
+            position: fixed;
+            top: -40px;
+            animation: fall 4s linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h1>Mau ga jadi pacarku? 💗</h1>
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+
+    <div id="result">
+        <img src="pacar.jpg" alt="Pacar Kamu" />
+        <h2>"Kamu adalah alasan aku tersenyum setiap hari 💖"</h2>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById("yesBtn");
+        const noBtn = document.getElementById("noBtn");
+        const container = document.getElementById("container");
+        const result = document.getElementById("result");
+
+        // Tombol No menghindar
+        noBtn.addEventListener("mouseover", () => {
+            noBtn.style.position = "absolute";
+            noBtn.style.left = Math.random() * window.innerWidth + "px";
+            noBtn.style.top = Math.random() * window.innerHeight + "px";
+        });
+
+        yesBtn.addEventListener("click", () => {
+            container.style.display = "none";
+            result.style.display = "block";
+            startFallingEffects();
+        });
+
+        function startFallingEffects() {
+            const symbols = ["💗", "🌸", "💞", "💐", "❤️", "🌺"];
+
+            setInterval(() => {
+                let element = document.createElement("div");
+                element.classList.add("falling");
+                element.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                element.style.left = Math.random() * window.innerWidth + "px";
+                element.style.fontSize = (20 + Math.random() * 30) + "px";
+                document.body.appendChild(element);
+
+                setTimeout(() => element.remove(), 4000);
+            }, 300);
+        }
+    </script>
+</body>
+</html>
